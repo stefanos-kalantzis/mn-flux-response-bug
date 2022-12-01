@@ -2,9 +2,9 @@ micronaut:
   application:
     name: mnFluxResponseBug
 
-#tracing:
-#  zipkin:
-#    enabled: true
+tracing:
+  zipkin:
+    enabled: true
 
 cassandra:
   default:
