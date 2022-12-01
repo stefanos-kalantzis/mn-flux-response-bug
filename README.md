@@ -1,18 +1,8 @@
-## Micronaut 3.7.4 Documentation
+In order to reproduce the issue, run the following test: `mn.flux.response.bug.RevisionControllerTest.getRevisions_bug_JsonEOFException`.
 
-- [User Guide](https://docs.micronaut.io/3.7.4/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.7.4/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.7.4/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
+Looking at the git history, there are 2 commits:
+- `451eed12` _"working state"_ (test passes) ✅
+- `c42f58a2` _"broken state"_ (test fails) ❌
 
----
-
-## Feature http-client documentation
-
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
-## Feature reactor documentation
-
-- [Micronaut Reactor documentation](https://micronaut-projects.github.io/micronaut-reactor/snapshot/guide/index.html)
-
-
+The latter commit is the one that causes the issue.
+It's obvious from the changes made, that enabling tracing-zipkin causes this problem.
