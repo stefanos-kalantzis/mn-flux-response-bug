@@ -1,13 +1,28 @@
 micronaut:
   application:
     name: mnFluxResponseBug
+
+#tracing:
+#  zipkin:
+#    enabled: true
+
 cassandra:
   default:
-    clusterName: '"myCluster"'
-    contactPoint: '"localhost"'
-    port: 9042
-    maxSchemaAgreementWaitSeconds: 20
-    ssl: true
+    basic:
+      contact-points:
+        - "${cdb.host}:${cdb.port}"
+      load-balancing-policy:
+        local-datacenter: "${cdb.datacenter}"
+        class: DefaultLoadBalancingPolicy
+      request:
+        timeout: 5s
+        consistency: "LOCAL_QUORUM"
+
+cdb:
+  host: "localhost"
+  port: 9043
+  datacenter: "datacenter1"
+
 netty:
   default:
     allocator:
